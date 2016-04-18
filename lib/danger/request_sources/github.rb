@@ -129,7 +129,7 @@ module Danger
       # use a read-only GitHub account
       if errors.count > 0
         # We need to fail the actual build here
-        abort("\nDanger has failed this build. \nFound #{errors.count} error(s) and I don't have write access to the PR set a PR status.")
+        abort("\nDanger has failed this build. \nFound #{errors.count} error#{'s' unless errors.count == 1} and I don't have write access to the PR set a PR status.")
       else
         puts message
       end
@@ -156,8 +156,8 @@ module Danger
         return "All green. #{random_compliment}"
       else
         message = "⚠ "
-        message += "#{errors.count} Error#{errors.count == 1 ? '' : 's'}. " unless errors.empty?
-        message += "#{warnings.count} Warning#{warnings.count == 1 ? '' : 's'}. " unless warnings.empty?
+        message += "#{errors.count} Error#{'s' unless errors.count == 1}. " unless errors.empty?
+        message += "#{warnings.count} Warning#{'s' unless warnings.count == 1}. " unless warnings.empty?
         message += "Don't worry, everything is fixable."
         return message
       end
